@@ -4,12 +4,7 @@ namespace Piwik\Plugins\AdminNotification;
 
 class API extends \Piwik\Plugin\API
 {
-    /**
-     * Returns true if the left menu is enabled for the current user.
-     *
-     * @return bool
-     */
-    
+
     private static $plugin_name = 'AdminNotification';
     
     public function isEnabled()
