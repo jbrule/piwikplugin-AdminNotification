@@ -1,0 +1,16 @@
+{
+ "name": "AdminNotification",
+ "version": "0.1.0",
+ "description": "Adds the ability for Piwik administrators to include an informative message to all user's dashboards. This uses the built in Notification function.",
+ "theme": false,
+ "require": {
+    "piwik": ">=2.8.0"
+ },
+ "authors": [
+     {
+         "name": "brulz",
+         "email": "",
+         "homepage": "https://www.linkedin.com/pub/joshua-brule/15/326/9b9"
+     }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+    "AdminNotification": {
+        "PluginDescription": "Places a message on all user's dashboards.",
+        "EnabledSettingTitle": "Enabled ",
+        "EnabledSettingDescription": " If enabled, the provided message will be displayed to users upon login.",
+        "MessageSettingTitle": "Message",
+        "MessageSettingDescription": "Message to display to users",
+        "ContextSettingTitle": "Context",
+        "ContextSettingDescription": "Sets what type of message should be displayed (affects color).",
+        "TitleSettingTitle": "Title",
+        "TitleSettingDescription": "Sets the title of the message. This will be dislayed in bold with the message."
+    }
+}
