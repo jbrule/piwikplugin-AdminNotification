@@ -6,6 +6,7 @@ Adds the ability for Piwik administrators to include an informative message on a
 The easiest way to install is to find the plugin in the [Piwik Marketplace](http://plugins.piwik.org/).
 
 ##Changelog
+0.1.1 Cleanup. Removed plugin template verbiage from code files.
 0.1.0 Initial Release
 
 ##License
