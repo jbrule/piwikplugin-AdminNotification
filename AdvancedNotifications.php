@@ -1,6 +1,6 @@
 <?php
 
-namespace Piwik\Plugins\AdminNotification;
+namespace Piwik\Plugins\AdvancedNotifications;
 
 use Piwik\Notification;
 
