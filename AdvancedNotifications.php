@@ -1,6 +1,6 @@
 <?php
 
-namespace Piwik\Plugins\AdminNotification;
+namespace Piwik\Plugins\AdvancedNotifications;
 
 use Piwik\Notification;
 
@@ -12,7 +12,8 @@ class AdminNotification extends \Piwik\Plugin
     {
         $hooks = array(
             'Login.initSession.end' => 'setNotification',
-            'Settings.AdminNotification.settingsUpdated' => 'setNotification'
+            'Settings.AdminNotification.settingsUpdated' => 'setNotification',
+            'CustomTrackerJs.getTrackerJsAdditions' => 'getTrackerJsAdditions'
         );
         return $hooks;
     }
@@ -38,5 +39,10 @@ class AdminNotification extends \Piwik\Plugin
         }else{
             Notification\Manager::cancel('admin_message');
         }
+    }
+
+    public function getTrackerJsAdditions(&$code)
+    {
+        $code .= PHP_EOL . 'console.log("AdvancedNotifications Plugin Enabled!");';
     }
 }

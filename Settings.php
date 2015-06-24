@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Plugins\AdminNotification;
+namespace Piwik\Plugins\AdvancedNotifications;
 
 use Piwik\Piwik;
 use Piwik\Notification;
@@ -43,59 +43,100 @@ class Settings extends \Piwik\Plugin\Settings
 
     private function createEnabledSetting()
     {
-        $this->enabled        = new SystemSetting('enabled', $this->t('EnabledSettingTitle'));
-        $this->enabled->type  = static::TYPE_BOOL;
-        $this->enabled->uiControlType = static::CONTROL_CHECKBOX;
-        $this->enabled->description   = $this->t('EnabledSettingDescription');
-        $this->enabled->readableByCurrentUser = true;
-        $this->enabled->defaultValue  = false;
+        $this->enabledLocal = new SystemSetting('enabledLocal', $this->t('EnabledLocalSettingTitle'));
+        $this->enabledLocal->type  = static::TYPE_BOOL;
+        $this->enabledLocal->uiControlType = static::CONTROL_CHECKBOX;
+        $this->enabledLocal->description   = $this->t('EnabledLocalSettingDescription');
+        $this->enabledLocal->readableByCurrentUser = true;
+        $this->enabledLocal->defaultValue  = false;
 
-        $this->addSetting($this->enabled);
+        $this->addSetting($this->enabledLocal);
+        
+        $this->enabledRemote = new SystemSetting('enabledRemote', $this->t('EnabledRemoteSettingTitle'));
+        $this->enabledRemote->type  = static::TYPE_BOOL;
+        $this->enabledRemote->uiControlType = static::CONTROL_CHECKBOX;
+        $this->enabledRemote->description   = $this->t('EnabledRemoteSettingDescription');
+        $this->enabledRemote->readableByCurrentUser = true;
+        $this->enabledRemote->defaultValue  = false;
+
+        $this->addSetting($this->enabledRemote);
     }
     
     private function createContextSetting()
     {
-        $this->context        = new SystemSetting('context', $this->t('ContextSettingTitle'));
-        $this->context->type  = static::TYPE_STRING;
-        $this->context->uiControlType = static::CONTROL_SINGLE_SELECT;
-        $this->context->availableValues  = array(Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
+        $this->contextLocal        = new SystemSetting('contextLocal', $this->t('ContextSettingTitle'));
+        $this->contextLocal->type  = static::TYPE_STRING;
+        $this->contextLocal->uiControlType = static::CONTROL_SINGLE_SELECT;
+        $this->contextLocal->availableValues  = array(Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
                                                  Notification::CONTEXT_ERROR => Notification::CONTEXT_ERROR,
                                                  Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
                                                  Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
                                                  Notification::CONTEXT_WARNING => Notification::CONTEXT_WARNING);
-        $this->context->description   = $this->t('ContextSettingDescription');
-        $this->context->readableByCurrentUser = true;
-        $this->context->defaultValue  = "info";
+        $this->contextLocal->description   = $this->t('ContextLocalSettingDescription');
+        $this->contextLocal->readableByCurrentUser = true;
+        $this->contextLocal->defaultValue  = "info";
 
-        $this->addSetting($this->context);
+        $this->addSetting($this->contextLocal);
+        
+        $this->contextRemote        = new SystemSetting('contextRemote', $this->t('ContextSettingTitle'));
+        $this->contextRemote->type  = static::TYPE_STRING;
+        $this->contextRemote->uiControlType = static::CONTROL_SINGLE_SELECT;
+        $this->contextRemote->availableValues  = array(Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
+                                                 Notification::CONTEXT_ERROR => Notification::CONTEXT_ERROR,
+                                                 Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
+                                                 Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
+                                                 Notification::CONTEXT_WARNING => Notification::CONTEXT_WARNING);
+        $this->contextRemote->description   = $this->t('ContextRemoteSettingDescription');
+        $this->contextRemote->readableByCurrentUser = true;
+        $this->contextRemote->defaultValue  = "info";
+
+        $this->addSetting($this->contextRemote);
     }
     
      private function createTitleSetting()
     {
-        $this->title        = new SystemSetting('title', $this->t('TitleSettingTitle'));
-        $this->title->type  = static::TYPE_STRING;
-        $this->title->uiControlType = static::CONTROL_TEXT;
-        $this->title->uiControlAttributes = array("size"=> 65);
-        $this->title->description   = $this->t('TitleSettingDescription');
-        $this->title->readableByCurrentUser = true;
-        $this->title->defaultValue  = "Message from Piwik Administrator";
+        $this->titleLocal        = new SystemSetting('titleLocal', $this->t('TitleLocalSettingTitle'));
+        $this->titleLocal->type  = static::TYPE_STRING;
+        $this->titleLocal->uiControlType = static::CONTROL_TEXT;
+        $this->titleLocal->uiControlAttributes = array("size"=> 65);
+        $this->titleLocal->description   = $this->t('TitleLocalSettingDescription');
+        $this->titleLocal->readableByCurrentUser = true;
+        $this->titleLocal->defaultValue  = "Message from Piwik Administrator";
+
+        $this->addSetting($this->titleLocal);
+        
+        $this->titleRemote        = new SystemSetting('titleRemote', $this->t('TitleRemoteSettingTitle'));
+        $this->titleRemote->type  = static::TYPE_STRING;
+        $this->titleRemote->uiControlType = static::CONTROL_TEXT;
+        $this->titleRemote->uiControlAttributes = array("size"=> 65);
+        $this->titleRemote->description   = $this->t('TitleRemoteSettingDescription');
+        $this->titleRemote->readableByCurrentUser = true;
+        $this->titleRemote->defaultValue  = "Message from Website Administrator";
 
         $this->addSetting($this->title);
     }
     
     private function createMessageSetting()
     {
-        $this->message = new SystemSetting('message', $this->t('MessageSettingTitle'));
-        $this->message->uiControlType = static::CONTROL_TEXTAREA;
-        $this->message->description   = $this->t('MessageSettingDescription');
-        $this->message->readableByCurrentUser = true;
-        $this->message->defaultValue  = "";
+        $this->messageLocal = new SystemSetting('messageLocal', $this->t('MessageLocalSettingTitle'));
+        $this->messageLocal->uiControlType = static::CONTROL_TEXTAREA;
+        $this->messageLocal->description   = $this->t('MessageLocalSettingDescription');
+        $this->messageLocal->readableByCurrentUser = true;
+        $this->messageLocal->defaultValue  = "";
 
-        $this->addSetting($this->message);
+        $this->addSetting($this->messageLocal);
+        
+        $this->messageRemote = new SystemSetting('messageRemote', $this->t('MessageRemoteSettingTitle'));
+        $this->messageRemote->uiControlType = static::CONTROL_TEXTAREA;
+        $this->messageRemote->description   = $this->t('MessageRemoteSettingDescription');
+        $this->messageRemote->readableByCurrentUser = true;
+        $this->messageRemote->defaultValue  = "";
+
+        $this->addSetting($this->messageRemote);
     }
     
     private function t($key)
     {
-        return Piwik::translate('AdminNotification_' . $key);
+        return Piwik::translate('AdvancedNotifications_' . $key);
     }
 }
