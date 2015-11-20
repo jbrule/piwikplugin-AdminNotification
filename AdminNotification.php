@@ -8,13 +8,23 @@ use Piwik\Notification;
  */ 
 class AdminNotification extends \Piwik\Plugin
 {
-    public function getListHooksRegistered()
-    {
-        $hooks = array(
+    private static $hooks = array(
             'Login.initSession.end' => 'setNotification',
             'Settings.AdminNotification.settingsUpdated' => 'setNotification'
-        );
-        return $hooks;
+    );
+    
+    //2.15 includes a new function for registering hooks. 2.15 wi
+    public function registerEvents()
+    {
+        return self::$hooks;
+    }
+    
+    //Pre 2.15 hook registration. Will be removed in Piwik 3. Kept for backwards compatibility with 2.12.
+    //Pre ver3 will still call this in addition to registerEvents.
+    //From reviewing the Piwik source this shouldn't be an issue as the hooks are not additive and this call will just overwrite the registerEvents call.
+    public function getListHooksRegistered()
+    {
+        return self::$hooks;
     }
     
     public function setNotification(){
