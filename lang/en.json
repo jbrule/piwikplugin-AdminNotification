@@ -1,7 +1,7 @@
 {
     "AdminNotification": {
         "PluginDescription": "Places a message on all user's dashboards.",
-        "EnabledSettingTitle": "Enabled ",
+        "EnabledSettingTitle": "Enabled",
         "EnabledSettingDescription": " If enabled, the provided message will be displayed to users upon login.",
         "MessageSettingTitle": "Message",
         "MessageSettingDescription": "Message to display to users",

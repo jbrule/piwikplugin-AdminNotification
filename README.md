@@ -6,9 +6,13 @@ Adds the ability for Piwik administrators to include an informative message on a
 The easiest way to install is to find the plugin in the [Piwik Marketplace](http://plugins.piwik.org/).
 
 ##Changelog
+3.0.0 Piwik v3 compatible.
 0.1.2 Tested with Piwik v2.15 and included new registerEvents() hook for compatibility with Piwik 3.0
 0.1.1 Cleanup. Removed plugin template verbiage from code files.
 0.1.0 Initial Release
+
+##Known Issues
+v3.0.0 Display/Update of notification required logout/login to see change. (Notification API not working as expected during tests)
 
 ##License
 GPL v3 / fair use
