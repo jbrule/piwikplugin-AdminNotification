@@ -14,7 +14,7 @@ The easiest way to install is to find the plugin in the [Piwik Marketplace](http
 ## Known Issues
 * v3.0.0 Display/Update of notification requires logout/login to see change. (Notification API not working as expected during tests)
 
-##License
+## License
 GPL v3 / fair use
 
 ## Support
