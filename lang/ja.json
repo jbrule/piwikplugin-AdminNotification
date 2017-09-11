@@ -2,7 +2,7 @@
     "AdminNotification": {
         "PluginDescription": "Places a message on all user's dashboards.",
         "EnabledSettingTitle": "使用可能",
-        "EnabledSettingDescription": "If enabled, the provided message will be displayed to users upon login.",
+        "EnabledSettingDescription": "If enabled, the provided message will be displayed to users upon login. (Logoff/Logon required in v3.x)",
         "MessageSettingTitle": "メッセージ",
         "MessageSettingDescription": "Message to display to users",
         "ContextSettingTitle": "コンテキスト",

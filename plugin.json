@@ -1,19 +1,22 @@
-{ 
- "name": "AdminNotification",
- "version": "0.1.2",
- "description": "Adds the ability for Piwik administrators to include an informative message to all user's dashboards. This uses the built in Notification function.",
- "license": "GPL v3+",
- "keywords": ["admin message", "notification"],
- "homepage": "https://github.com/jbrule/piwikplugin-AdminNotification",
- "theme": false,
- "require": {
-    "piwik": ">=2.12.0"
- },
- "authors": [
-     {
-         "name": "Josh Brule",
-         "email": "",
-         "homepage": "https://www.linkedin.com/pub/joshua-brule/15/326/9b9"
-     }
- ]
+{
+    "name": "AdminNotification",
+    "version": "3.0.0",
+    "description": "Adds the ability for Piwik administrators to include an informative message to all user's dashboards. This uses the built in Notification function.",
+    "license": "GPL v3+",
+    "keywords": [
+        "admin message",
+        "notification"
+    ],
+    "homepage": "https:\/\/github.com\/jbrule\/piwikplugin-AdminNotification",
+    "theme": false,
+    "require": {
+        "piwik": ">=2.12.0,<4.0.0-b1"
+    },
+    "authors": [
+        {
+            "name": "Josh Brule",
+            "email": "",
+            "homepage": "https:\/\/github.com\/jbrule"
+        }
+    ]
 }
