@@ -6,9 +6,9 @@ Adds the ability for Piwik administrators to include an informative message on a
 The easiest way to install is to find the plugin in the [Piwik Marketplace](http://plugins.piwik.org/).
 
 ## Changelog
-* 3.0.0 Piwik v3 compatible. Effort was made to maintain backwords compatibility. This should work all the way back to 2.12.x
-* 4.0.1.2 Tested with Piwik v2.15 and included new registerEvents() hook for compatibility with Piwik 3.0
-* 5.0.1.1 Cleanup. Removed plugin template verbiage from code files.
+* 3.0.0 Piwik v3 compatible. Effort was made to maintain backwards compatibility. This should work all the way back to 2.12.x
+* 0.1.2 Tested with Piwik v2.15 and included new registerEvents() hook for compatibility with Piwik 3.0
+* 0.1.1 Cleanup. Removed plugin template verbiage from code files.
 * 0.1.0 Initial Release
 
 ## Known Issues
