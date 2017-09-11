@@ -33,10 +33,7 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
     public $messageTitle;
 
     /** @var Setting */
-    public $description;
-
-    /** @var Setting */
-    public $password;
+    public $message;
 
     protected function init()
     {

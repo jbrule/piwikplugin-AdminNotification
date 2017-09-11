@@ -68,6 +68,11 @@ class AdminNotification extends \Piwik\Plugin
     public function setNotificationV3(){
             //Known issue. The alert notification is not updated until login/logout on v3.x.        
         
+            //2.X Compatibility. This method appears to be getting called in v2.X which I didn't believe would trigger the newer hooks.
+            if(!class_exists('\Piwik\Settings\Plugin\SystemSettings')){ //If class doesn't exist just get out.
+             return;
+            }
+        
             $settings = new SystemSettings();
             //print_r($settings->enabled->getValue());
             
