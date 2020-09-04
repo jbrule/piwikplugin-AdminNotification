@@ -1,6 +1,6 @@
 {
     "name": "AdminNotification",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "description": "Adds the ability for Piwik administrators to include an informative message to all user's dashboards. This uses the built in Notification function.",
     "license": "GPL v3+",
     "keywords": [
@@ -10,7 +10,7 @@
     "homepage": "https:\/\/github.com\/jbrule\/piwikplugin-AdminNotification",
     "theme": false,
     "require": {
-        "piwik": ">=2.12.0,<4.0.0-b1"
+        "matomo": ">=4.0.0-b1,<5.0.0-b1"
     },
     "authors": [
         {
