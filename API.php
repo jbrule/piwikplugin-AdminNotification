@@ -4,12 +4,11 @@ namespace Piwik\Plugins\AdminNotification;
 
 class API extends \Piwik\Plugin\API
 {
-
     private static $plugin_name = 'AdminNotification';
-    
+
     public function isEnabled()
     {
-        $settings = new Settings(self::$plugin_name);
+        $settings = new SystemSettings();
         $enabled  = $settings->enabled->getValue();
         $message  = $this->getMessage();
 
@@ -19,19 +18,22 @@ class API extends \Piwik\Plugin\API
 
         return false;
     }
-    
-    public function getContext(){
-        $settings = new Settings(self::$plugin_name);
+
+    public function getContext()
+    {
+        $settings = new SystemSettings();
         return $settings->context->getValue();
     }
-    
-    public function getTitle(){
-        $settings = new Settings(self::$plugin_name);
+
+    public function getTitle()
+    {
+        $settings = new SystemSettings();
         return $settings->title->getValue();
     }
-    
-    public function getMessage(){
-        $settings = new Settings(self::$plugin_name);
+
+    public function getMessage()
+    {
+        $settings = new SystemSettings();
         return $settings->message->getValue();
     }
 }
