@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Piwik - free/libre analytics platform
  *
@@ -28,7 +29,7 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
 
     /** @var Setting */
     public $context;
-    
+
     /** @var Setting */
     public $messageTitle;
 
@@ -41,13 +42,12 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
         $this->enabled = $this->createEnabledSetting();
 
         $this->context = $this->createContextSetting();
-        
+
         $this->messageTitle = $this->createTitleSetting();
 
         $this->message = $this->createMessageSetting();
-
     }
-    
+
     private function createEnabledSetting()
     {
         return $this->makeSetting('enabled', $default = false, FieldConfig::TYPE_BOOL, function (FieldConfig $field) {
@@ -57,32 +57,42 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
             $field->readableByCurrentUser = true;
         });
     }
-    
+
     private function createContextSetting()
     {
-        return $this->makeSetting('context', $default = "info", FieldConfig::TYPE_STRING, function (FieldConfig $field) {
-            $field->title = $this->t('ContextSettingTitle');
-            $field->condition = 'enabled';
-            $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
-            $field->description = $this->t('ContextSettingDescription');
-            $field->availableValues = array(Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
+        return $this->makeSetting(
+            'context',
+            $default = "info",
+            FieldConfig::TYPE_STRING,
+            function (FieldConfig $field) {
+                $field->title = $this->t('ContextSettingTitle');
+                $field->condition = 'enabled';
+                $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
+                $field->description = $this->t('ContextSettingDescription');
+                $field->availableValues = array(Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
                                                  Notification::CONTEXT_ERROR => Notification::CONTEXT_ERROR,
                                                  Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
                                                  Notification::CONTEXT_WARNING => Notification::CONTEXT_WARNING);
-        });
+            }
+        );
     }
-    
+
     private function createTitleSetting()
     {
-        return $this->makeSetting('title', $default = "Message from Piwik Administrator", FieldConfig::TYPE_STRING, function (FieldConfig $field) {
-            $field->title = $this->t('TitleSettingTitle');
-            $field->condition = 'enabled';
-            $field->uiControl = FieldConfig::UI_CONTROL_TEXT;
+        return $this->makeSetting(
+            'title',
+            $default = "Message from Piwik Administrator",
+            FieldConfig::TYPE_STRING,
+            function (FieldConfig $field) {
+                $field->title = $this->t('TitleSettingTitle');
+                $field->condition = 'enabled';
+                $field->uiControl = FieldConfig::UI_CONTROL_TEXT;
             //$field->uiControlAttributes = array("size"=> 65);
-            $field->description = $this->t('TitleSettingDescription');
-        });
+                $field->description = $this->t('TitleSettingDescription');
+            }
+        );
     }
-    
+
     private function createMessageSetting()
     {
         return $this->makeSetting('message', $default = "", FieldConfig::TYPE_STRING, function (FieldConfig $field) {
@@ -92,8 +102,9 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
             $field->description = $this->t('MessageSettingDescription');
         });
     }
-    
-    private function t($translate_token){
-        return Piwik::translate("AdminNotification_".$translate_token);
+
+    private function t($translate_token)
+    {
+        return Piwik::translate("AdminNotification_" . $translate_token);
     }
 }
