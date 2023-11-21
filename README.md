@@ -26,4 +26,4 @@ GPL v3 / fair use
 
 ## Support
 
-Please [report any issues](https://github.com/jbrule/Matomoplugin-AdminNotification/issues). Pull requests welcome.
+Please [report any issues](https://github.com/jbrule/piwikplugin-AdminNotification/issues). Pull requests welcome.
