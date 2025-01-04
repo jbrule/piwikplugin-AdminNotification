@@ -50,6 +50,7 @@ class AdminNotification extends \Piwik\Plugin
             //print_r($notification);
 
             Notification\Manager::notify('AdminNotification_notice', $notification);
+            Piwik::postEvent('AdminNotification.notice', [&$notification]);
         } else {
             //echo "NOTIFY CANCEL";
             Notification\Manager::cancel('AdminNotification_notice');
