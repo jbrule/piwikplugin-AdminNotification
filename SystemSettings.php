@@ -44,14 +44,13 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
 
     protected function init()
     {
-
         $this->enabled = $this->createEnabledSetting();
-
-        $this->context = $this->createContextSetting();
 
         $this->messageTitle = $this->createTitleSetting();
 
         $this->message = $this->createMessageSetting();
+
+        $this->context = $this->createContextSetting();
 
         $this->type = $this->createTypeSetting();
 
@@ -60,28 +59,14 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
 
     private function createEnabledSetting()
     {
-        return $this->makeSetting('enabled', $default = false, FieldConfig::TYPE_BOOL, function (FieldConfig $field) {
-            $field->title = $this->t('EnabledSettingTitle');
-            $field->uiControl = FieldConfig::UI_CONTROL_CHECKBOX;
-            $field->description = $this->t('EnabledSettingDescription');
-        });
-    }
-
-    private function createContextSetting()
-    {
         return $this->makeSetting(
-            'context',
-            $default = "info",
-            FieldConfig::TYPE_STRING,
+            'enabled',
+            $default = false,
+            FieldConfig::TYPE_BOOL,
             function (FieldConfig $field) {
-                $field->title = $this->t('ContextSettingTitle');
-                $field->condition = 'enabled';
-                $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
-                $field->description = $this->t('ContextSettingDescription');
-                $field->availableValues = array(Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
-                                                 Notification::CONTEXT_ERROR => Notification::CONTEXT_ERROR,
-                                                 Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
-                                                 Notification::CONTEXT_WARNING => Notification::CONTEXT_WARNING);
+                $field->title = $this->t('EnabledSettingTitle');
+                $field->uiControl = FieldConfig::UI_CONTROL_CHECKBOX;
+                $field->description = $this->t('EnabledSettingDescription');
             }
         );
     }
@@ -96,7 +81,6 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
                 $field->title = $this->t('TitleSettingTitle');
                 $field->condition = 'enabled';
                 $field->uiControl = FieldConfig::UI_CONTROL_TEXT;
-            //$field->uiControlAttributes = array("size"=> 65);
                 $field->description = $this->t('TitleSettingDescription');
                 $field->validate = function ($value) {
                     $value = trim($value);
@@ -110,11 +94,16 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
 
     private function createMessageSetting()
     {
-        return $this->makeSetting('message', $default = "", FieldConfig::TYPE_STRING, function (FieldConfig $field) {
+        return $this->makeSetting(
+            'message',
+            $default = "",
+            FieldConfig::TYPE_STRING,
+            function (FieldConfig $field) {
             $field->title = $this->t('MessageSettingTitle');
             $field->condition = 'enabled';
             $field->uiControl = FieldConfig::UI_CONTROL_TEXTAREA;
             $field->description = $this->t('MessageSettingDescription');
+            $field->inlineHelp = $this->t('MessageSettingHelp');
             $field->validate = function ($value) {
                 $value = trim($value);
                 if (strlen($value) == 0) {
@@ -124,11 +113,30 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
         });
     }
 
+    private function createContextSetting()
+    {
+        return $this->makeSetting(
+            'context',
+            $default = Notification::CONTEXT_INFO,
+            FieldConfig::TYPE_STRING,
+            function (FieldConfig $field) {
+                $field->title = $this->t('ContextSettingTitle');
+                $field->condition = 'enabled';
+                $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
+                $field->description = $this->t('ContextSettingDescription');
+                $field->availableValues = array(Notification::CONTEXT_INFO => Notification::CONTEXT_INFO,
+                                                 Notification::CONTEXT_ERROR => Notification::CONTEXT_ERROR,
+                                                 Notification::CONTEXT_SUCCESS => Notification::CONTEXT_SUCCESS,
+                                                 Notification::CONTEXT_WARNING => Notification::CONTEXT_WARNING);
+            }
+        );
+    }
+
     private function createTypeSetting()
     {
         return $this->makeSetting(
             'type',
-            $default = "persistent",
+            $default = Notification::TYPE_PERSISTENT,
             FieldConfig::TYPE_STRING,
             function (FieldConfig $field) {
                 $field->title = $this->t('TypeSettingTitle');

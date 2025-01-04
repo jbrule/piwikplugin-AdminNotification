@@ -19,11 +19,7 @@ class API extends \Piwik\Plugin\API
         return false;
     }
 
-    public function getContext()
-    {
-        $settings = new SystemSettings();
-        return $settings->context->getValue();
-    }
+
 
     public function getTitle()
     {
@@ -35,5 +31,23 @@ class API extends \Piwik\Plugin\API
     {
         $settings = new SystemSettings();
         return $settings->message->getValue();
+    }
+
+    public function getContext()
+    {
+        $settings = new SystemSettings();
+        return $settings->context->getValue();
+    }
+
+    public function getType()
+    {
+        $settings = new SystemSettings();
+        return $settings->type->getValue();
+    }
+
+    public function getPriority()
+    {
+        $settings = new SystemSettings();
+        return $settings->priority->getValue();
     }
 }
