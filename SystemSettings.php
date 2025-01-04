@@ -39,6 +39,9 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
     /** @var Setting */
     public $type;
 
+    /** @var Setting */
+    public $priority;
+
     protected function init()
     {
 
@@ -51,6 +54,8 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
         $this->message = $this->createMessageSetting();
 
         $this->type = $this->createTypeSetting();
+
+        $this->priority = $this->createPrioritySetting();
     }
 
     private function createEnabledSetting()
@@ -85,7 +90,7 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
     {
         return $this->makeSetting(
             'title',
-            $default = "Message from Piwik Administrator",
+            $default = "Message from Matomo Administrator",
             FieldConfig::TYPE_STRING,
             function (FieldConfig $field) {
                 $field->title = $this->t('TitleSettingTitle');
@@ -93,6 +98,12 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
                 $field->uiControl = FieldConfig::UI_CONTROL_TEXT;
             //$field->uiControlAttributes = array("size"=> 65);
                 $field->description = $this->t('TitleSettingDescription');
+                $field->validate = function ($value) {
+                    $value = trim($value);
+                    if (strlen($value) == 0) {
+                        throw new \Exception($this->t('TitleMissing'));
+                    }
+                };
             }
         );
     }
@@ -104,6 +115,12 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
             $field->condition = 'enabled';
             $field->uiControl = FieldConfig::UI_CONTROL_TEXTAREA;
             $field->description = $this->t('MessageSettingDescription');
+            $field->validate = function ($value) {
+                $value = trim($value);
+                if (strlen($value) == 0) {
+                    throw new \Exception($this->t('MessageMissing'));
+                }
+            };
         });
     }
 
@@ -121,6 +138,25 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
                 $field->availableValues = array(Notification::TYPE_PERSISTENT => Notification::TYPE_PERSISTENT,
                                                 Notification::TYPE_TRANSIENT => Notification::TYPE_TRANSIENT,
                                                 Notification::TYPE_TOAST => Notification::TYPE_TOAST);
+            }
+        );
+    }
+
+    private function createPrioritySetting()
+    {
+        return $this->makeSetting(
+            'priority',
+            $default = Notification::PRIORITY_MAX,
+            FieldConfig::TYPE_FLOAT,
+            function (FieldConfig $field) {
+                $field->title = $this->t('PrioritySettingTitle');
+                $field->condition = 'enabled';
+                $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
+                $field->description = $this->t('PrioritySettingDescription');
+                $field->availableValues = array(Notification::PRIORITY_MIN => Notification::PRIORITY_MIN,
+                                                Notification::PRIORITY_LOW => Notification::PRIORITY_LOW,
+                                                Notification::PRIORITY_HIGH => Notification::PRIORITY_HIGH,
+                                                Notification::PRIORITY_MAX => Notification::PRIORITY_MAX);
             }
         );
     }
