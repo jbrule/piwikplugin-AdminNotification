@@ -8,6 +8,9 @@
         "ContextSettingTitle": "Context",
         "ContextSettingDescription": "Sets what type of message should be displayed (affects color).",
         "TitleSettingTitle": "Title",
-        "TitleSettingDescription": "Sets the title of the message. This will be dislayed in bold with the message."
+        "TitleSettingDescription": "Sets the title of the message. This will be dislayed in bold with the message.",
+        "TypeSettingTitle": "Type",
+        "TypeSettingDescription": "Persistent (display until user closes the notification), Transient (displays once, disappear on page reload) or Toast (displayed for a few seconds, and the fades out)"
+
     }
 }

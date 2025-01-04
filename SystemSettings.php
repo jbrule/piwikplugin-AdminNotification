@@ -36,6 +36,9 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
     /** @var Setting */
     public $message;
 
+    /** @var Setting */
+    public $type;
+
     protected function init()
     {
 
@@ -46,6 +49,8 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
         $this->messageTitle = $this->createTitleSetting();
 
         $this->message = $this->createMessageSetting();
+
+        $this->type = $this->createTypeSetting();
     }
 
     private function createEnabledSetting()
@@ -101,6 +106,24 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
             $field->uiControl = FieldConfig::UI_CONTROL_TEXTAREA;
             $field->description = $this->t('MessageSettingDescription');
         });
+    }
+
+    private function createTypeSetting()
+    {
+        return $this->makeSetting(
+            'type',
+            $default = "persistent",
+            FieldConfig::TYPE_STRING,
+            function (FieldConfig $field) {
+                $field->title = $this->t('TypeSettingTitle');
+                $field->condition = 'enabled';
+                $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
+                $field->description = $this->t('TypeSettingDescription');
+                $field->availableValues = array(Notification::TYPE_PERSISTENT => Notification::TYPE_PERSISTENT,
+                                                Notification::TYPE_TRANSIENT => Notification::TYPE_TRANSIENT,
+                                                Notification::TYPE_TOAST => Notification::TYPE_TOAST);
+            }
+        );
     }
 
     private function t($translate_token)
