@@ -43,7 +43,7 @@ class AdminNotification extends \Piwik\Plugin
         if ($settings->enabled->getValue()) {
 
             $sanitized_message = Common::sanitizeInputValue($settings->message->getValue());
-            $markdowned_message = minimal_markdown($sanitized_message);
+            $markdowned_message = self::minimal_markdown($sanitized_message);
 
             $notification = new Notification($markdowned_message);
             $notification->title = $settings->messageTitle->getValue();
@@ -63,7 +63,7 @@ class AdminNotification extends \Piwik\Plugin
         }
     }
 
-    function minimal_markdown($escaped_input){
+    protected static function minimal_markdown($escaped_input){
 
         //Replace with common Markdown markup
         $markdown_processed = preg_replace(

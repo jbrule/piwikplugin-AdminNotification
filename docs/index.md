@@ -22,11 +22,11 @@ Message
 
 ## Bolding and Italics
 ```markdown
-*This is italizied*
+*This is italicized*
 
 **This is bolded**
 
-***This is italized and bolded***
+***This is italicized and bolded***
 ```
 
 ## Links
