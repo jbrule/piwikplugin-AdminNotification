@@ -9,7 +9,7 @@ Adds the ability for Matomo administrators to include an informative message on 
 The easiest way to install is to find the plugin in the [Matomo Marketplace](http://plugins.matomo.org/).
 
 ## Changelog
-
+* 5.1.0 Added message transience and priority options. Added minimal markdown support (see [./docs/index.md](./docs/index.md))
 * 5.0.0 Matomo v5 compatible, not backwards compatible.
 * 3.0.0 Piwik v3 compatible. Effort was made to maintain backwards compatibility. This should work all the way back to 2.12.x
 * 0.1.2 Tested with Piwik v2.15 and included new registerEvents() hook for compatibility with Piwik 3.0

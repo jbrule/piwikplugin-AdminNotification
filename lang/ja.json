@@ -2,13 +2,20 @@
     "AdminNotification": {
         "PluginDescription": "Places a message on all user's dashboards.",
         "EnabledSettingTitle": "使用可能",
-        "EnabledSettingDescription": "If enabled, the provided message will be displayed to users upon login. (Logoff/Logon required in v3.x)",
+        "EnabledSettingDescription": "If enabled, the provided message will be displayed to users upon login. (Logoff/Logon required for ≥ v3.x)",
         "MessageSettingTitle": "メッセージ",
-        "MessageSettingDescription": "Message to display to users",
+        "MessageSettingDescription": "Message to display to users. Supports a minimal set of markdown.",
+        "MessageSettingHelp": "See <a target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://plugins.matomo.org/AdminNotification#documentation\">plugin documentation</a> for supported markdown.",
+        "MessageMissing": "You must provide a message.",
         "ContextSettingTitle": "コンテキスト",
         "ContextSettingDescription": "Sets what type of message should be displayed (affects color).",
         "TitleSettingTitle": "タイトル",
-        "TitleSettingDescription": "Sets the title of the message. This will be dislayed in bold with the message."
+        "TitleSettingDescription": "Sets the title of the message. This will be displayed in bold with the message.",
+        "TitleMissing": "You must provide a title.",
+        "TypeSettingTitle": "型",
+        "TypeSettingDescription": "Persistent (display until user closes the notification), Transient (displays once, disappear on page reload) or Toast (displayed for a few seconds, and the fades out)",
+        "PrioritySettingTitle": "優先",
+        "PrioritySettingDescription": "Higher priority, higher order"
     }
 }
 
